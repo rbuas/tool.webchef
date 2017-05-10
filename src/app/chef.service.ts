@@ -1,0 +1,5 @@
+export class ChefService {
+    constructor () {
+        
+    }
+}
