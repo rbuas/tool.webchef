@@ -1,4 +1,5 @@
 export class Recipe {
+  public id : string;
   public name : string;
   public description : string;
   public imagepath : string;
@@ -7,7 +8,8 @@ export class Recipe {
   public miseenplace : [string];
   public preparation : [string];
 
-  constructor(name : string, description : string, imagepath : string) {
+  constructor(id : string, name : string, description : string, imagepath : string) {
+    this.id = id;
     this.name = name;
     this.description = description;
     this.imagepath = imagepath;

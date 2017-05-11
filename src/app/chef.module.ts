@@ -5,6 +5,8 @@ import { HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ToggleClassDirective } from '../iceberg/toggleclass/toggleclass.directive';
+import { PageNotFound } from '../iceberg/basicpages/notfound.component';
+import { PageServerError } from '../iceberg/basicpages/servererror.component';
 
 import { ChefComponent } from './chef.component';
 import { HeaderComponent } from './header/header.component';
@@ -34,7 +36,12 @@ import { RecipeBook } from "./recipe/recipebook.service";
       {path:'',component:RecipeListComponent},
       {path:'recipes',component:RecipeListComponent},
       {path:'recipe/:id',component:RecipeInfoComponent},
-      {path:'shopping',component:ShoppingListComponent}
+      {path:'recipe/:id/:seo',component:RecipeInfoComponent},
+      {path:'shopping',component:ShoppingListComponent},
+      
+      {path:'servererror',component:PageServerError},
+      {path:'notfound',component:PageNotFound},
+      {path:'**',redirectTo:"/notfound"}
     ])
   ],
   providers: [RecipeBook],
