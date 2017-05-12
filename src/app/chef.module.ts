@@ -8,6 +8,7 @@ import { ToggleClassDirective } from '../iceberg/toggleclass/toggleclass.directi
 import { PageNotFound } from '../iceberg/basicpages/notfound.component';
 import { PageServerError } from '../iceberg/basicpages/servererror.component';
 
+import { ChefApp } from "./chef.service";
 import { ChefComponent } from './chef.component';
 import { HeaderComponent } from './header/header.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
@@ -36,7 +37,7 @@ import { RecipeBookResolver } from "./recipe/recipebook.resolver";
     FormsModule,
     HttpModule,
     RouterModule.forRoot([
-      {path:'',component:RecipeListComponent},
+      {path:'', redirectTo: "/recipes", pathMatch:"full"},
       {path:'recipes',component:RecipeListComponent},
       {path:'recipe/:id',component:RecipeInfoComponent, resolve : {recipe : RecipeBookResolver}},
       {path:'recipe/:id/:seo',component:RecipeInfoComponent},
@@ -47,7 +48,11 @@ import { RecipeBookResolver } from "./recipe/recipebook.resolver";
       {path:'**',redirectTo:"/notfound"}
     ], {useHash : false})
   ],
-  providers: [RecipeBook, RecipeBookResolver],
+  providers: [
+    ChefApp, 
+    RecipeBook, 
+    RecipeBookResolver
+  ],
   bootstrap: [ChefComponent]
 })
 export class ChefModule { }

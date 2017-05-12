@@ -1,0 +1,4 @@
+{
+    "backend" : "https://webchef-f6d87.firebaseio.com/",
+    "backmode" : "json"
+}
