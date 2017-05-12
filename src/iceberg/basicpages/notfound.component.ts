@@ -1,4 +1,3 @@
-
 import { Component, OnInit, OnDestroy } from "@angular/core";
 
 @Component({
@@ -7,7 +6,7 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 })
 export class PageNotFound implements OnInit, OnDestroy {
     constructor() {}
-    
+
     ngOnInit() {}
 
     ngOnDestroy() {}

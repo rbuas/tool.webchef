@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router, Params } from '@angular/router';
+import { ActivatedRoute, Router, Params, Data } from '@angular/router';
 import { Subscription } from 'rxjs/subscription';
 
 import { RecipeBook } from '../recipe/recipebook.service';
@@ -15,14 +15,20 @@ export class RecipeInfoComponent implements OnInit, OnDestroy {
   public recipe : Recipe;
   public mode : string;
 
+  private dataSubscription : Subscription;
   private querySubscription : Subscription;
   private fragmentsSubscription : Subscription;
 
   constructor(private recipebook : RecipeBook, private route : ActivatedRoute, private router : Router) { }
 
   ngOnInit() {
-    this.recipeid = this.route.snapshot.params["id"];
-    this.recipe = this.recipebook.getRecipe(this.recipeid);
+    this.dataSubscription = this.route.data.subscribe(
+      (data : Data) => {
+        this.recipe = data["recipe"];
+      }
+    );
+    //this.recipeid = this.route.snapshot.params["id"];
+    //this.recipe = this.recipebook.getRecipe(this.recipeid);
 
     console.log("params : ", this.route.snapshot.queryParams);
     this.querySubscription = this.route.queryParams.subscribe(
@@ -37,6 +43,7 @@ export class RecipeInfoComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.dataSubscription.unsubscribe();
     this.querySubscription.unsubscribe();
     this.fragmentsSubscription.unsubscribe();
   }

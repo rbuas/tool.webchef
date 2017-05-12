@@ -16,6 +16,7 @@ import { RecipeResumeComponent } from './recipe-resume/recipe-resume.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingSummaryComponent } from './shopping-summary/shopping-summary.component';
 import { RecipeBook } from "./recipe/recipebook.service";
+import { RecipeBookResolver } from "./recipe/recipebook.resolver";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import { RecipeBook } from "./recipe/recipebook.service";
     RecipeResumeComponent,
     ShoppingListComponent,
     ShoppingSummaryComponent,
-    ToggleClassDirective
+    ToggleClassDirective,
+    PageNotFound,
+    PageServerError
   ],
   imports: [
     BrowserModule,
@@ -35,16 +38,16 @@ import { RecipeBook } from "./recipe/recipebook.service";
     RouterModule.forRoot([
       {path:'',component:RecipeListComponent},
       {path:'recipes',component:RecipeListComponent},
-      {path:'recipe/:id',component:RecipeInfoComponent},
+      {path:'recipe/:id',component:RecipeInfoComponent, resolve : {recipe : RecipeBookResolver}},
       {path:'recipe/:id/:seo',component:RecipeInfoComponent},
       {path:'shopping',component:ShoppingListComponent},
       
       {path:'servererror',component:PageServerError},
       {path:'notfound',component:PageNotFound},
       {path:'**',redirectTo:"/notfound"}
-    ])
+    ], {useHash : false})
   ],
-  providers: [RecipeBook],
+  providers: [RecipeBook, RecipeBookResolver],
   bootstrap: [ChefComponent]
 })
 export class ChefModule { }
