@@ -14,6 +14,7 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
   public seo : string;
   public recipe : Recipe;
   public mode : string;
+  public editMode : boolean = false;
 
   private dataSubscription : Subscription;
   private querySubscription : Subscription;
@@ -31,6 +32,7 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
     this.querySubscription = this.route.queryParams.subscribe(
       (params : Params) => {
         this.mode = params["mode"];
+        this.editMode = params["id"] != null;
       }
     );
 
