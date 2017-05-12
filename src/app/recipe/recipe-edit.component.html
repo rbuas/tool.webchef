@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-xs-12 list-group-item">
+    <div class="pull-left">
+      <h4 class="list-group-item-heading">{{ recipe.name }} <ng-content></ng-content></h4>
+      <p class="list-group-item-text">{{ recipe.description }}</p>
+    </div>
+    <div class="pull-right">
+      <img src="" data-src="{{ recipe.imagepath }}" alt="{{ recipe.name }}" class="img-responsive" />
+    </div>
+  </div>
+</div>

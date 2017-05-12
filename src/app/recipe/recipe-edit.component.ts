@@ -2,14 +2,14 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, Params, Data } from '@angular/router';
 import { Subscription } from 'rxjs/subscription';
 
-import { RecipeBook } from '../recipe/recipebook.service';
-import { Recipe } from "../recipe/recipe.module";
+import { RecipeBook } from './recipebook.service';
+import { Recipe } from "./recipe.module";
 
 @Component({
-  selector: 'chef-recipe-info',
-  templateUrl: './recipe-info.component.html'
+  selector: 'chef-recipe-edit',
+  templateUrl: './recipe-edit.component.html'
 })
-export class RecipeInfoComponent implements OnInit, OnDestroy {
+export class RecipeEditComponent implements OnInit, OnDestroy {
   public recipeid : number;
   public seo : string;
   public recipe : Recipe;
@@ -27,18 +27,17 @@ export class RecipeInfoComponent implements OnInit, OnDestroy {
         this.recipe = data["recipe"];
       }
     );
-    //this.recipeid = this.route.snapshot.params["id"];
-    //this.recipe = this.recipebook.getRecipe(this.recipeid);
 
-    console.log("params : ", this.route.snapshot.queryParams);
     this.querySubscription = this.route.queryParams.subscribe(
       (params : Params) => {
         this.mode = params["mode"];
       }
     );
 
-    console.log("fragment : ", this.route.snapshot.fragment);
     this.fragmentsSubscription = this.route.fragment.subscribe(
+      (params : string) => {
+        console.log("TODO : use fragments");
+      }
     );
   }
 
@@ -48,7 +47,7 @@ export class RecipeInfoComponent implements OnInit, OnDestroy {
     this.fragmentsSubscription.unsubscribe();
   }
 
-  onEdit() {
-    this.router.navigate(['edit'], {relativeTo : this.route, queryParamsHandling:"merge"});
+  onSave() {
+    console.log("TODO : save eddited recipe");
   }
 }

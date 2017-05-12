@@ -11,11 +11,12 @@ import { PageServerError } from '../iceberg/basicpages/servererror.component';
 import { ChefApp } from "./chef.service";
 import { ChefComponent } from './chef.component';
 import { HeaderComponent } from './header/header.component';
-import { RecipeListComponent } from './recipe-list/recipe-list.component';
-import { RecipeInfoComponent } from './recipe-info/recipe-info.component';
-import { RecipeResumeComponent } from './recipe-resume/recipe-resume.component';
+import { RecipeListComponent } from './recipe/recipe-list.component';
+import { RecipeInfoComponent } from './recipe/recipe-info.component';
+import { RecipeEditComponent } from './recipe/recipe-edit.component';
+import { RecipeResumeComponent } from './recipe/recipe-resume.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingSummaryComponent } from './shopping-summary/shopping-summary.component';
+import { ShoppingSummaryComponent } from './shopping-list/shopping-summary.component';
 import { RecipeBook } from "./recipe/recipebook.service";
 import { RecipeBookResolver } from "./recipe/recipebook.resolver";
 
@@ -25,6 +26,7 @@ import { RecipeBookResolver } from "./recipe/recipebook.resolver";
     HeaderComponent,
     RecipeListComponent,
     RecipeInfoComponent,
+    RecipeEditComponent,
     RecipeResumeComponent,
     ShoppingListComponent,
     ShoppingSummaryComponent,
@@ -39,6 +41,7 @@ import { RecipeBookResolver } from "./recipe/recipebook.resolver";
     RouterModule.forRoot([
       {path:'', redirectTo: "/recipes", pathMatch:"full"},
       {path:'recipes',component:RecipeListComponent},
+      {path:'recipe/new',component:RecipeEditComponent},
       {path:'recipe/:id',component:RecipeInfoComponent, resolve : {recipe : RecipeBookResolver}},
       {path:'recipe/:id/:seo',component:RecipeInfoComponent},
       {path:'shopping',component:ShoppingListComponent},
