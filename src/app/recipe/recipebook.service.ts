@@ -1,6 +1,7 @@
 import { EventEmitter, Injectable } from  '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
 import 'rxjs/Rx';
+import { Observable } from "rxjs/Rx";
 
 import { Recipe } from './recipe.module';
 
@@ -45,6 +46,9 @@ export class RecipeBook {
     return this.http.get("http://test.com/recipes", {headers : headers})
       .map(
         (response : Response) => { return response.json(); }
+      )
+      .catch(
+        (error : Response) => { console.log(error); return Observable.throw(error); }
       );
   }
 
