@@ -17,21 +17,30 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
   public editMode : boolean = false;
 
   private dataSubscription : Subscription;
+  private paramsSubscription : Subscription;
   private querySubscription : Subscription;
   private fragmentsSubscription : Subscription;
 
-  constructor(private recipebook : RecipeBook, private route : ActivatedRoute, private router : Router) { }
+  constructor(private recipebook : RecipeBook, private route : ActivatedRoute, private router : Router) {
+    this.recipe = new Recipe("", "", "", "");
+  }
 
   ngOnInit() {
     this.dataSubscription = this.route.data.subscribe(
       (data : Data) => {
-        this.recipe = data["recipe"];
+        console.log("test");
+        this.recipe = data["recipe"] || this.recipe;
       }
     );
 
     this.querySubscription = this.route.queryParams.subscribe(
       (params : Params) => {
         this.mode = params["mode"];
+      }
+    );
+
+    this.paramsSubscription = this.route.params.subscribe(
+      (params : Params) => {
         this.editMode = params["id"] != null;
       }
     );
@@ -45,6 +54,7 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.dataSubscription.unsubscribe();
+    this.paramsSubscription.unsubscribe();
     this.querySubscription.unsubscribe();
     this.fragmentsSubscription.unsubscribe();
   }

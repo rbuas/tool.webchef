@@ -41,9 +41,10 @@ import { RecipeBookResolver } from "./recipe/recipebook.resolver";
     RouterModule.forRoot([
       {path:'', redirectTo: "/recipes", pathMatch:"full"},
       {path:'recipes',component:RecipeListComponent},
-      {path:'recipe/new',component:RecipeEditComponent},
+      {path:'recipe/new',component:RecipeEditComponent, resolve : {recipe : RecipeBookResolver}},
       {path:'recipe/:id',component:RecipeInfoComponent, resolve : {recipe : RecipeBookResolver}},
-      {path:'recipe/:id/:seo',component:RecipeInfoComponent},
+      {path:'recipe/:id/new',component:RecipeEditComponent, resolve : {recipe : RecipeBookResolver}},
+      {path:'recipe/:id/:seo',component:RecipeInfoComponent, resolve : {recipe : RecipeBookResolver}},
       {path:'shopping',component:ShoppingListComponent},
       
       {path:'servererror',component:PageServerError},
