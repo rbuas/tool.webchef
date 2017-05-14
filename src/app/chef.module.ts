@@ -10,6 +10,8 @@ import { PageServerError } from '../iceberg/basicpages/servererror.component';
 
 import { ChefApp } from "./chef.service";
 import { ChefComponent } from './chef.component';
+import { RecipeBook } from "./recipe/recipebook.service";
+import { RecipeBookResolver } from "./recipe/recipebook.resolver";
 import { HeaderComponent } from './header/header.component';
 import { RecipeListComponent } from './recipe/recipe-list.component';
 import { RecipeInfoComponent } from './recipe/recipe-info.component';
@@ -17,8 +19,6 @@ import { RecipeEditComponent } from './recipe/recipe-edit.component';
 import { RecipeResumeComponent } from './recipe/recipe-resume.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingSummaryComponent } from './shopping-list/shopping-summary.component';
-import { RecipeBook } from "./recipe/recipebook.service";
-import { RecipeBookResolver } from "./recipe/recipebook.resolver";
 
 @NgModule({
   declarations: [

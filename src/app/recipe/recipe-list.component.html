@@ -6,5 +6,5 @@
 </div>
 <hr>
 <div class="recipe-list">
-  <chef-recipe-resume *ngFor="let recipe of recipebook.getRecipes()" [recipe]="recipe"><a routerLink="/recipe/{{recipe.id}}">view</a></chef-recipe-resume>
+  <chef-recipe-resume *ngFor="let recipe of recipes" [recipe]="recipe"><a routerLink="/recipe/{{recipe.id}}">view</a></chef-recipe-resume>
 </div>
